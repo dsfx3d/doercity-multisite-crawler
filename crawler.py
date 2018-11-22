@@ -57,18 +57,18 @@ class ParaSpider(Spider):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("url", nargs=1, help="url to start crawling from", type=str)
-    parser.add_argument("-o", nargs=1, help="specify output file; will be generated if does not exist, will truncate previous data if exists", default="log.json", type=str, metavar='--output')
+    parser.add_argument("url", help="url to start crawling from", type=str)
+    parser.add_argument("-o", help="specify output file; will be generated if does not exist, will truncate previous data if exists", default="log.json", type=str, metavar='--output')
 
     args = parser.parse_args()
     
-    url = str(args.url)
+    url = args.url
     url = url.strip('\"')
     url = url.strip('\'')
 
     if not url.startswith('http'):
         url = f'http://{url}'
-
+    
     parsable_url = urlparse(url)
     
     start_urls = [url]
